@@ -7,6 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <h1>Tast Spotting Clone</h1>
+  <!-- User auth -->
+  <% if !current_user.nil? %>
+    <ul>
+      <li>Logged in as: <%= current_user.username %></li>
+      <li><%= button_to "Logout", session_url, :method => :delete %></li>
+    </ul>
+  <% end %>
 
 <%= yield %>
 
