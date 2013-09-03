@@ -70,7 +70,8 @@ TasteSpottingClone::Application.configure do
     :s3_credentials => {
       :bucket => "tscproduction",
       :access_key_id => ENV["TSC_ACCESS_KEY"],
-      :secret_access_key => ENV["TSC_SECRET_ACCESS_KEY"]
+      :secret_access_key => ENV["TSC_SECRET_ACCESS_KEY"],
+      :s3_host_name => 's3-us-west-1.amazonaws.com'
     }
   }
 end
