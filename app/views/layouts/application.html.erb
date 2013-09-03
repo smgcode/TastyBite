@@ -15,6 +15,10 @@
       <li><%= button_to "Logout", session_url, :method => :delete %></li>
     </ul>
   <% end %>
+  <nav>
+    <%= link_to("Posts Index", root_url) %> |
+    <%= link_to("Users Index", users_url) %>
+  </nav>
 
 <%= yield %>
 
