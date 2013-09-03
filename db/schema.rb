@@ -11,14 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902234502) do
+ActiveRecord::Schema.define(:version => 20130903184140) do
 
   create_table "posts", :force => true do |t|
-    t.string   "link",         :null => false
-    t.string   "description",  :null => false
-    t.integer  "submitter_id", :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "link",                    :null => false
+    t.string   "description",             :null => false
+    t.integer  "submitter_id",            :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "post_photo_file_name"
+    t.string   "post_photo_content_type"
+    t.integer  "post_photo_file_size"
+    t.datetime "post_photo_updated_at"
   end
 
   add_index "posts", ["submitter_id"], :name => "index_posts_on_submitter_id"

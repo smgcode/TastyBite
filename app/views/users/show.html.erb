@@ -3,11 +3,11 @@
 </h2>
 
 <p>Posts</p>
-<ul>
+<div>
   <% @posts.each do |post| %>
-  <li>Image: Insert Image here!</li>
-  <li>link: <%= link_to(post.link, post.link) %></li>
-  <li>description: <%= post.description %></li>
-  <br>
+    <%= image_tag post.post_photo.url(:medium) %><br>
+    <%= link_to(post.description, post.link)%><br>
   <% end %>
-</ul>
+</div>
+
+

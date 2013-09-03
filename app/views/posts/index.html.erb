@@ -1,10 +1,9 @@
 <h2>Index of all posts</h2>
 
-<ul>
+<div>
   <% @posts.each do |post| %>
-    <li>Image: [Insert image here!]</li>
-    <li>link: <%= link_to(post.link, post.link)%></li>
-    <li>description: <%= post.description %></li>
+    <%= image_tag post.post_photo.url(:medium) %><br>
+    <%= link_to(post.description, post.link)%><br>
     <br>
   <% end %>
-</ul>
+</div>

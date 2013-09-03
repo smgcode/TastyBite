@@ -2,5 +2,6 @@
   Create an account
 </h2>
 
+<p>Already have an account? <%= link_to("Log in", new_session_url)%></p>
 <p>Please enter a password longer than 6 characters.</p>
 <%= render "form", :user => @user %>

@@ -34,4 +34,14 @@ TasteSpottingClone::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => "tscdevelopment",
+      :access_key_id => ENV["TSC_ACCESS_KEY"],
+      :secret_access_key => ENV["TSC_SECRET_ACCESS_KEY"],
+      :s3_host_name => 's3-us-west-1.amazonaws.com'
+    }
+  }
 end

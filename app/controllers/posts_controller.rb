@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new()
     render :new
   end
   
