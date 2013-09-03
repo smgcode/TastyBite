@@ -1,0 +1,10 @@
+<h2>Index of all posts</h2>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>Image: [Insert image here!]</li>
+    <li>link: <%= link_to(post.link, post.link)%></li>
+    <li>description: <%= post.description %></li>
+    <br>
+  <% end %>
+</ul>

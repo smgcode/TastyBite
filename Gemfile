@@ -22,4 +22,4 @@ gem 'jquery-rails'
 gem 'pg'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'

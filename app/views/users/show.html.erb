@@ -1,3 +1,13 @@
-<p>
-  You are viewing <b><%= @user.username %></b>'s profile
-</p>
+<h2>
+  <%= @user.username %>'s profile
+</h2>
+
+<p>Posts</p>
+<ul>
+  <% @posts.each do |post| %>
+  <li>Image: Insert Image here!</li>
+  <li>link: <%= link_to(post.link, post.link) %></li>
+  <li>description: <%= post.description %></li>
+  <br>
+  <% end %>
+</ul>
