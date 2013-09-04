@@ -20,6 +20,12 @@
       <%= link_to("Users Index", users_url) %> |
       <%= link_to("Create Post", new_post_url) %>
     </nav>
+  <% else %>
+    <nav>
+      <%= link_to("Posts Index", root_url) %> |
+      <%= link_to("Sign up", new_user_url)%> |
+      <%= link_to("Log in", new_session_url)%>      
+    </nav>
   <% end %>
 
 

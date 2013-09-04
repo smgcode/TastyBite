@@ -29,3 +29,4 @@ gem 'paperclip'  # Allow uploading files.
 gem 'aws-sdk'    # Amazon Web Services - SDK.
 gem 'figaro'     # Don't share my private stuff!
 gem 'debugger'   # Debugging - use only for development?
+gem 'backbone-on-rails'
