@@ -1,6 +1,4 @@
 TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
-
-  _temp: null,
   
   events: {
     "submit #new-post-form": "submitNewPost",
@@ -16,25 +14,33 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   
   encodeFile: function(event){
     // http://stackoverflow.com/questions/4100927/chrome-filereader
-    var that = this;
     var reader = new FileReader();
-    reader.onload = function(){ that._temp = this.result; }
+    var that = this;
+    reader.onload = function(){ 
+      that.model.set({ post_photo: this.result });
+    }
     reader.readAsDataURL(event.currentTarget.files[0]);
   },
   
   submitNewPost: function(event){
     event.preventDefault();
-
-    var attributes = $("#new-post-form").serializeJSON().post;
-    var model = new TasteSpottingClone.Models.Post;
-    jQuery.extend(attributes, { post_photo: this._temp });
-    model.set(attributes);
     
-    this.collection.create(attributes, {
-      success: function(){ console.log("Added model to collection!"); },
-      error: function(){ console.log("Could not add to collection."); }
+    var attributes = $("#new-post-form").serializeJSON().post;
+    this.model.set(attributes);
+    this.collection.add(this.model);
+    
+    var that = this;
+    this.model.save(null, {
+      success: function(rsp){
+        that.model.set(rsp);
+        console.log("Added model to collection!"); 
+        Backbone.history.navigate("#/");            
+      },
+      
+      error: function(){ 
+        console.log("Could not add to collection.");
+        // TODO should warn user could not submit data.
+      }
     })
-    Backbone.history.navigate("#/");    
-    // TODO after this, setup listeners on post_index.js
   }
 });

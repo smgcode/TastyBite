@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.submitter_id = current_user.id
     if @post.save
-      render :json => @post
+      render "create.rabl"
     else
       render :new
     end

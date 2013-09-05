@@ -11,7 +11,7 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   },
   
   index: function(){
-    $("#new-post-form").empty();
+    $("#new-post-form").remove();
     new TasteSpottingClone.Views.PostsIndex({
       collection: this.collection,
       el: this.$rootEl.find("#content")
@@ -20,6 +20,7 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   
   newPost: function(){
     var new_post = new TasteSpottingClone.Views.PostsNew({
+      model: new TasteSpottingClone.Models.Post(),
       collection: this.collection
     });
     this.$rootEl.find("#content").before(new_post.render().$el);
