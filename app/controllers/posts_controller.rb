@@ -1,22 +1,21 @@
 class PostsController < ApplicationController
   before_filter :require_current_user!, :only => [:new, :create]
-  # before_filter :require_no_current_user!, :only => [:index, :show]
   
   def index
     @posts = Post.all
-    render :index
+    render "index.rabl"
   end
 
   def new
     @post = Post.new()
-    render :new
+    render :json => @post
   end
   
   def create
     @post = Post.new(params[:post])
     @post.submitter_id = current_user.id
     if @post.save
-      redirect_to post_url(@post)
+      render :json => @post
     else
       render :new
     end

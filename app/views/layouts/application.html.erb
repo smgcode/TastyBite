@@ -18,7 +18,7 @@
     <nav>
       <%= link_to("Posts Index", root_url) %> |
       <%= link_to("Users Index", users_url) %> |
-      <%= link_to("Create Post", new_post_url) %>
+      <%= link_to("Create Post", "#posts/new") %>
     </nav>
   <% else %>
     <nav>
@@ -30,8 +30,6 @@
 
 
 <%= yield %>
-
-<div id="content"></div>
 
 </body>
 </html>

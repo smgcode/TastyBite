@@ -1,0 +1,27 @@
+<form id="new-post-form" enctype="multipart/form-data">
+  <label for="post_post_photo">Image</label>
+  <br>  
+  <input
+    type="file"
+    name="post[post_photo]" multiple
+    id="post_post_photo">
+
+  <br>
+  <label for="post_link">Link</label>
+  <br>
+  <input
+    type="text"
+    name="post[link]"
+    id="post_link">
+
+  <br>
+  <label for="post_description">Description</label>
+  <br>
+  <input
+    type="text"
+    name="post[description]"
+    id="post_description">
+
+  <br>
+  <input type="submit" value="Create Post">
+</form>

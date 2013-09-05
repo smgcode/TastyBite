@@ -3,5 +3,5 @@ TasteSpottingClone::Application.routes.draw do
   resource :session, :only => [:create, :destroy, :new]
   resources :posts
 
-  root :to => "posts#index"
+  root :to => "roots#root"
 end

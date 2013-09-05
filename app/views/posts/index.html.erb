@@ -1,9 +1,0 @@
-<h2>Index of all posts</h2>
-
-<div>
-  <% @posts.each do |post| %>
-    <%= image_tag post.post_photo.url(:medium) %><br>
-    <%= link_to(post.description, post.link)%><br>
-    <br>
-  <% end %>
-</div>

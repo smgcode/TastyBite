@@ -20,13 +20,18 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'annotate'
 end
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
-gem 'jquery-rails'
+
 gem 'pg'         # Use postgres sqlite.
 gem 'paperclip'  # Allow uploading files.
 gem 'aws-sdk'    # Amazon Web Services - SDK.
 gem 'figaro'     # Don't share my private stuff!
 gem 'debugger'   # Debugging - use only for development?
+
 gem 'backbone-on-rails'
+gem 'jquery-rails'
+gem 'rabl'
+gem 'oj'
