@@ -1,7 +1,6 @@
 TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
 
   initialize: function(options){
-    this.$rootEl = options.$rootEl;
     this.collection = options.collection;
   },
   
@@ -12,18 +11,27 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   
   index: function(){
     $("#new-post-form").remove();
-    new TasteSpottingClone.Views.PostsIndex({
-      collection: this.collection,
-      el: this.$rootEl.find("#content")
-    }).render().$el;
-  },
-  
-  newPost: function(){
-    var new_post = new TasteSpottingClone.Views.PostsNew({
-      model: new TasteSpottingClone.Models.Post(),
+    
+    var view = new TasteSpottingClone.Views.PostsIndex({
       collection: this.collection
     });
-    this.$rootEl.find("#content").before(new_post.render().$el);
+
+    $("#content").html(view.render().$el);
+  },
+
+  currentView: null,
+  
+  newPost: function(){
+    if (this.currentView){
+      this.currentView.remove();
+    }
+        
+    this.currentView = new TasteSpottingClone.Views.PostsNew({
+      model: new TasteSpottingClone.Models.Post(),
+      collection: this.collection,
+    });
+
+    $("#content").html(this.currentView.render().$el);
   }
   
 });

@@ -1,5 +1,7 @@
 TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   
+  className: "tile",
+  
   events: {
     "submit #new-post-form": "submitNewPost",
     "change input[type=file]": "encodeFile"
@@ -8,7 +10,9 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   template: JST['posts/new'],
   
   render: function (){
-    this.$el.html(this.template());
+    this.$el.empty()
+    
+    this.$el.prepend(this.template());
     return this;
   },
   
@@ -33,14 +37,13 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
     this.model.save(null, {
       success: function(rsp){
         that.model.set(rsp);
-        console.log("Added model to collection!"); 
-        Backbone.history.navigate("#/");            
+        Backbone.history.navigate("#/");
       },
       
       error: function(){ 
         console.log("Could not add to collection.");
         // TODO should warn user could not submit data.
       }
-    })
+    });
   }
 });

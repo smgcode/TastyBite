@@ -7,8 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>Taste Spotting Clone</h1>
-  <!-- User auth -->
+  <h1>Nom Nom Nom</h1>
+
   <% if !current_user.nil? %>
     <ul>
       <li>Logged in as: <%= current_user.username %></li>
@@ -16,13 +16,13 @@
     </ul>
     
     <nav>
-      <%= link_to("Posts Index", root_url) %> |
-      <%= link_to("Users Index", users_url) %> |
-      <%= link_to("Create Post", "#posts/new") %>
+      <%= link_to("Nommings", "#/") %> |
+      <%= link_to("Nommers", "#users") %> |
+      <%= link_to("Nom!", "#posts/new") %>
     </nav>
   <% else %>
     <nav>
-      <%= link_to("Posts Index", root_url) %> |
+      <%= link_to("Spottings", root_url) %> |
       <%= link_to("Sign up", new_user_url)%> |
       <%= link_to("Log in", new_session_url)%>      
     </nav>

@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   
   def index
     @posts = Post.all
-    render "index.rabl"
+    respond_to do |format|
+      format.json { render "index.rabl" }
+    end
   end
 
   def new

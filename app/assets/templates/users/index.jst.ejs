@@ -1,0 +1,9 @@
+<ol>
+  <% collection.each( function(user){ %>
+    <li>    
+      <a href="#users/<%= user.get("id") %>">
+        <%= user.get("username") %>
+      </a>
+    </li>
+  <% }); %>
+</ol>

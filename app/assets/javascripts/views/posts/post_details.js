@@ -1,13 +1,11 @@
 TasteSpottingClone.Views.PostsDetails = Backbone.View.extend({
 
+  template: JST['posts/details'],
+
   className: "tile",
 
   render: function (){
-    this.$el.html(
-      JST['posts/details']({
-        model: this.model
-      })
-    );
+    this.$el.html( this.template({ model: this.model }));
     return this;
   }
 });

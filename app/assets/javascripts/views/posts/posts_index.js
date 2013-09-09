@@ -8,12 +8,14 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
   template: JST['posts/index'],
   
   render: function (){
+    this.$el.empty()
+    
     var that = this;
-    this.$el.html(this.template());
     this.collection.each( function (post) {
       var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
-      that.$el.prepend(postView.render().el);
+      that.$el.prepend(postView.render().$el);
     });
+    this.$el.prepend(this.template());
     return this;
   }
 

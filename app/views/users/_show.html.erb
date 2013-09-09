@@ -1,0 +1,11 @@
+<h2>
+  <%= @user.username %>'s profile
+</h2>
+
+<p>Posts</p>
+<div>
+  <% @posts.each do |post| %>
+    <%= image_tag post.post_photo.url(:medium) %><br>
+    <%= link_to(post.description, post.link)%><br>
+  <% end %>
+</div>
