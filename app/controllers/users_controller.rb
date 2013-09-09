@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    # @posts = Post.all
-    render "index.rabl"
+    respond_to do |format|
+      format.json { render "index.rabl" }
+    end
   end
 
   def create
