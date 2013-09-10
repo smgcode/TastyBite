@@ -26,6 +26,10 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
     reader.readAsDataURL(event.currentTarget.files[0]);
   },
   
+  // TODO When waiting for success. Change button to say submitting and
+  // disable new submitting until success or error. This will prevent
+  // the user from submitting every time they hit the button while waiting.
+  // other solution: validate on db.
   submitNewPost: function(event){
     event.preventDefault();
     
@@ -35,14 +39,12 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
     
     var that = this;
     this.model.save(null, {
-      success: function(rsp){
-        that.model.set(rsp);
+      success: function(){
         Backbone.history.navigate("#/");
       },
-      
+
       error: function(){ 
         console.log("Could not add to collection.");
-        // TODO should warn user could not submit data.
       }
     });
   }

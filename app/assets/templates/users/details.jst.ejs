@@ -1,11 +1,2 @@
 <h2> Posts for: <%= model.get("username") %></h2>
 <br>
-
-<% model.get("posts").each( function(post){ %>
-  <div class="tile">
-    <img src="<%= post.get("url_medium") %>"><br>
-    <a href="<%= post.get("link") %>">
-      <%= post.get("description") %>
-    </a>
-  </div>
-<% }); %>

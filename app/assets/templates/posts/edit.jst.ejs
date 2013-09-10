@@ -1,0 +1,31 @@
+<h3>edit post</h3>
+<form id="edit-post-form" enctype="multipart/form-data">
+  <label for="post_post_photo">Image</label>
+  <br>  
+  <input
+    type="file"
+    name="post[post_photo]" multiple
+    value="<%= model.get("post_photo") %>"
+    id="post_post_photo">
+
+  <br>
+  <label for="post_link">Link</label>
+  <br>
+  <input
+    type="text"
+    name="post[link]"
+    value="<%= model.get("link") %>"
+    id="post_link">
+
+  <br>
+  <label for="post_description">Description</label>
+  <br>
+  <input
+    type="text"
+    name="post[description]"
+    value="<%= model.get("description") %>"
+    id="post_description">
+
+  <br>
+  <input type="submit" value="Edit Post">
+</form>

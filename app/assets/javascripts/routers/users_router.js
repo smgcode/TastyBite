@@ -17,10 +17,10 @@ TasteSpottingClone.Routers.Users = Backbone.Router.extend({
     });
     $("#content").html(view.render().$el);
   },
-    
+
   details: function(id){
-    
-    var that = this;    
+
+    var that = this;
     $.when(this.collection.fetch())
       .done(function(userData){
         var view = new TasteSpottingClone.Views.UsersDetails({
