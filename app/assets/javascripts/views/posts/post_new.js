@@ -32,7 +32,6 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   // other solution: validate on db.
   submitNewPost: function(event){
     event.preventDefault();
-    
     var attributes = $("#new-post-form").serializeJSON().post;
     this.model.set(attributes);
     this.collection.add(this.model);

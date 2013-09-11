@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903184140) do
+ActiveRecord::Schema.define(:version => 20130911214557) do
+
+  create_table "categories", :force => true do |t|
+    t.integer  "post_id",    :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "categories", ["post_id"], :name => "index_categories_on_post_id"
+
+  create_table "category_memberships", :force => true do |t|
+    t.integer  "post_id",     :null => false
+    t.integer  "category_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "category_memberships", ["category_id"], :name => "index_category_memberships_on_category_id"
+  add_index "category_memberships", ["post_id"], :name => "index_category_memberships_on_post_id"
 
   create_table "posts", :force => true do |t|
     t.string   "link",                    :null => false
@@ -23,8 +42,11 @@ ActiveRecord::Schema.define(:version => 20130903184140) do
     t.string   "post_photo_content_type"
     t.integer  "post_photo_file_size"
     t.datetime "post_photo_updated_at"
+    t.string   "categories"
+    t.integer  "category_id"
   end
 
+  add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["submitter_id"], :name => "index_posts_on_submitter_id"
 
   create_table "users", :force => true do |t|

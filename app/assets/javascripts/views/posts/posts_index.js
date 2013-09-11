@@ -16,6 +16,7 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
       that.$el.prepend(postView.render().$el);
     });
     this.$el.prepend(this.template());
+    
     return this;
   }
 

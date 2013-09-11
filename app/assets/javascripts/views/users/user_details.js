@@ -15,7 +15,6 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
       var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
       that.$el.prepend(postView.render().$el);
       
-      
       if (that.model.get("id") === that.model.get("current_user_id")){
         $post = that.$el
           .find(".tile")
@@ -27,7 +26,6 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
           .html("Edit")
           .attr("data-id", post.get("id"))
           .addClass("edit"));
-          
         $post
           .append($("<button>")
           .html("Delete")
