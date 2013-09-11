@@ -30,8 +30,18 @@ class PostsController < ApplicationController
   
   def update
     @post = Post.find_by_id(params[:id])
-    @post.update_attributes!(params[:post])
+    if current_user.id == @post.submitter_id
+      @post.update_attributes!(params[:post])
+    end
     render "create.rabl"
+  end
+  
+  def destroy
+    @post = Post.find_by_id(params[:id])
+    if current_user.id == @post.submitter_id
+      @post.destroy
+    end
+    render :json => @post
   end
   
 end

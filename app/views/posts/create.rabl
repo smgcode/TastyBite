@@ -1,3 +1,3 @@
 object @post
-attributes :id, :description, :link, :submitter_id, :post_photo
+attributes :id, :description, :link, :submitter_id
 node(:url_medium) { @post.post_photo.url(:medium) }

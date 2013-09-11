@@ -28,6 +28,7 @@ TasteSpottingClone.Views.PostsEdit = Backbone.View.extend({
   },
   
   submitEditPost: function(event){
+    debugger
     event.preventDefault();
     
     var attributes = $("#edit-post-form").serializeJSON().post;
