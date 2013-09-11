@@ -1,15 +1,11 @@
 class Post < ActiveRecord::Base
-  POST_CATEGORIES = [
-    "recipe",
-    "food",
-    "drink",
-    "dinning",
-    "products",
-    "people",
-    "news"
-  ]
-
-  attr_accessible :description, :link, :submitter_id, :post_photo, :categories
+  attr_accessible(
+    :description,
+    :link,
+    :submitter_id,
+    :post_photo,
+    :category_ids
+    )
   
   validates(
     :description,
@@ -17,14 +13,20 @@ class Post < ActiveRecord::Base
     :submitter_id,
     :presence => true
     )
-
-  # TODO validation failes. find out why.
-  # validates :categories, :inclusion => POST_CATEGORIES
   
   belongs_to :user,
   :class_name => "User",
   :foreign_key => :submitter_id,
-  :primary_key => :id  
+  :primary_key => :id
+  
+  has_many :memberships,
+  :class_name => "CategoryMembership",
+  :foreign_key => :post_id,
+  :primary_key => :id
+  
+  has_many :categories,
+  :through => :memberships,
+  :source => :category
   
   has_attached_file :post_photo, :styles => {
     # use # after dimensions to scale and crop.
