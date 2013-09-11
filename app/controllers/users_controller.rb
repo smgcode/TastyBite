@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @current_user = current_user
     respond_to do |format|
       format.json { render "index.rabl" }
     end

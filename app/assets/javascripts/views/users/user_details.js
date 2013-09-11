@@ -12,20 +12,28 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
     
     var that = this;
     this.model.get("posts").each( function (post){
-
       var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
       that.$el.prepend(postView.render().$el);
-
-      that.$el.prepend($("<button>")
-        .html("Edit")
-        .attr("data-id", post.get("id"))
-        .addClass("edit"));
-
-      that.$el.prepend($("<button>")
-        .html("Delete")
-        .attr("data-id", post.get("id"))
-        .addClass("delete"));
-        
+      
+      
+      if (that.model.get("id") === that.model.get("current_user_id")){
+        $post = that.$el
+          .find(".tile")
+          .filter("[data-id='" + post.get("id") + "']");
+        $post
+          .append($("<br>"));
+        $post
+          .append($("<button>")
+          .html("Edit")
+          .attr("data-id", post.get("id"))
+          .addClass("edit"));
+          
+        $post
+          .append($("<button>")
+          .html("Delete")
+          .attr("data-id", post.get("id"))
+          .addClass("delete"));
+      }  
     });
     
     this.$el.prepend( this.template({ model: this.model }));
