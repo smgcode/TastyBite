@@ -1,6 +1,6 @@
 collection @users
 attributes :id, :username
-node(:current_user_id) { @current_user.id }
+node(:current_user_id) { @current_user.id if @current_user }
 
 child (:posts) do
   attributes :id, :description, :link, :submitter_id
