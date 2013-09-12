@@ -1,4 +1,4 @@
-<h3>edit post</h3>
+<h3>Edit post</h3>
 <form id="edit-post-form" enctype="multipart/form-data">
   <label for="post_post_photo">Image</label>
   <br>  
@@ -25,6 +25,28 @@
     name="post[description]"
     value="<%= model.get("description") %>"
     id="post_description">
+
+  <br>
+  <br>
+  <b>Select catagories:</b>
+  <br>
+
+  <% categoriesCollection.each( function(category){ %>
+    <% html_id = "category_member_id" + category.get("id") %>
+    <input type="checkbox"
+      name="post[category_ids][]"
+      <% if(model.get("categories").findWhere({
+        id: category.get("id")
+      })){ %>
+        <%= "checked" %>
+      <% } %>
+      value="<%= category.get("id") %>"
+      id="<%= html_id %>">
+    <label for="<%= html_id %>">
+      <%= category.get("name") %>
+    </label>
+    <br>
+  <% }); %>
 
   <br>
   <input type="submit" value="Edit Post">

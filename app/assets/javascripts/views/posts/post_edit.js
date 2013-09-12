@@ -10,10 +10,17 @@ TasteSpottingClone.Views.PostsEdit = Backbone.View.extend({
 
   template: JST['posts/edit'],
   
+  categoriesCollection: null,
+  
+  initialize: function(options){
+    this.categoriesCollection = options.categoriesCollection; 
+  },
+  
   render: function (){
     this.$el.empty();
     this.$el.prepend(this.template({
-      model: this.model
+      model: this.model,
+      categoriesCollection: this.categoriesCollection
     }));
     return this;
   },
@@ -29,7 +36,6 @@ TasteSpottingClone.Views.PostsEdit = Backbone.View.extend({
   
   submitEditPost: function(event){
     event.preventDefault();
-    
     var attributes = $("#edit-post-form").serializeJSON().post;
     this.model.set(attributes);
     

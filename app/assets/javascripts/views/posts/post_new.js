@@ -9,10 +9,18 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
 
   template: JST['posts/new'],
   
+  categoriesCollection: null,
+  
+  initialize: function(options){
+    this.categoriesCollection = options.categoriesCollection
+  },
+  
   render: function (){
+
     this.$el.empty()
-    
-    this.$el.prepend(this.template());
+    this.$el.prepend(this.template({
+      categoriesCollection: this.categoriesCollection
+    }));
     return this;
   },
   

@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   end
   
   def create
-    debugger
     @post = Post.new(params[:post])
     @post.submitter_id = current_user.id
     if @post.save

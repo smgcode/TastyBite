@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>Nom Nom Nom</h1>
+  <h1>Tasty Bit</h1>
 
   <% if !current_user.nil? %>
     <ul>
@@ -16,13 +16,13 @@
     </ul>
     
     <nav>
-      <%= link_to("Nommings", "#/") %> |
-      <%= link_to("Nommers", "#users") %> |
-      <%= link_to("Nom!", "#posts/new") %>
+      <%= link_to("Post Index", "#/") %> |
+      <%= link_to("Users", "#users") %> |
+      <%= link_to("New Post", "#posts/new") %>
     </nav>
   <% else %>
     <nav>
-      <%= link_to("Spottings", root_url) %> |
+      <%= link_to("Post Index", root_url) %> |
       <%= link_to("Sign up", new_user_url)%> |
       <%= link_to("Log in", new_session_url)%>      
     </nav>

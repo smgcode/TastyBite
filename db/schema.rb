@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911214405) do
+ActiveRecord::Schema.define(:version => 20130912183228) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20130911214405) do
     t.string   "post_photo_content_type"
     t.integer  "post_photo_file_size"
     t.datetime "post_photo_updated_at"
-    t.string   "categories"
   end
 
   add_index "posts", ["submitter_id"], :name => "index_posts_on_submitter_id"

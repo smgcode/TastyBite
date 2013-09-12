@@ -1,14 +1,19 @@
 TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
 
+  currentView: null,
+  categoriesCollection: null,
+  
   initialize: function(options){
     this.collection = options.collection;
+    this.categoriesCollection = options.categoriesCollection;
   },
   
   routes: {
     "": "index",
     "posts/new": "newPost",
     "posts/:id/edit": "editPost",
-    "posts/:id/delete": "deletePost"
+    "posts/:id/delete": "deletePost",
+    "category/new": "newCategory",
   },
   
   index: function(){
@@ -18,14 +23,13 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
     });
     $("#content").html(view.render().$el);
   },
-
-  currentView: null,
   
   newPost: function(){
     if (this.currentView){ this.currentView.remove(); }
     this.currentView = new TasteSpottingClone.Views.PostsNew({
       model: new TasteSpottingClone.Models.Post(),
       collection: this.collection,
+      categoriesCollection: this.categoriesCollection
     });
     $("#content").html(this.currentView.render().$el);
   },
@@ -34,7 +38,8 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
     if (this.currentView){ this.currentView.remove(); }
     this.currentView = new TasteSpottingClone.Views.PostsEdit({
       model: this.collection.get(id),
-      collection: this.collection
+      collection: this.collection,
+      categoriesCollection: this.categoriesCollection
     });
     $("#content").html(this.currentView.render().$el);
   },
@@ -53,6 +58,15 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
       }
     });
     Backbone.history.navigate("#/");
+  },
+  
+  newCategory: function(){
+    if (this.currentView){ this.currentView.remove(); }
+    this.currentView = new TasteSpottingClone.Views.CategoriesNew({
+      model: new TasteSpottingClone.Models.Category(),
+      collection: this.categoriesCollection,
+    });
+    $("#content").html(this.currentView.render().$el);
   }
   
 });
