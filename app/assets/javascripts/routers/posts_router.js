@@ -14,6 +14,7 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
     "posts/:id/edit": "editPost",
     "posts/:id/delete": "deletePost",
     "category/new": "newCategory",
+    "category/:id": "showCategory"
   },
   
   index: function(){
@@ -67,6 +68,17 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
       collection: this.categoriesCollection,
     });
     $("#content").html(this.currentView.render().$el);
+  },
+  
+  showCategory: function(id){
+    if (this.categoriesCollection.get(id)){
+      if (this.currentView){ this.currentView.remove(); }
+      this.currentView = new TasteSpottingClone.Views.CategoriesShow({
+        model: this.categoriesCollection.get(id),
+        collection: this.collection,
+      });
+      $("#content").html(this.currentView.render().$el);
+    }
   }
   
 });

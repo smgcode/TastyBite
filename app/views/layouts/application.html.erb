@@ -15,17 +15,23 @@
       <li><%= button_to "Logout", session_url, :method => :delete %></li>
     </ul>
     
-    <nav>
+    <div class="navigation">
       <%= link_to("Post Index", "#/") %> |
       <%= link_to("Users", "#users") %> |
       <%= link_to("New Post", "#posts/new") %>
-    </nav>
+    </div>
+    <div class="navigation">
+      Categories:
+      <% Category.all.each do |category| %>
+        <%= link_to("#{category.name}","#category/#{category.id}" ) %> |
+      <% end %>
+    </div>
   <% else %>
-    <nav>
+    <div class="navigation">
       <%= link_to("Post Index", root_url) %> |
       <%= link_to("Sign up", new_user_url)%> |
       <%= link_to("Log in", new_session_url)%>      
-    </nav>
+    </div>
   <% end %>
 
 
