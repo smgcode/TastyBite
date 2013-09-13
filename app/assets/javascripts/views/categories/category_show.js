@@ -1,6 +1,4 @@
 TasteSpottingClone.Views.CategoriesShow = Backbone.View.extend({
-
-  // template: JST['categories/show'],
   
   render: function (){
     this.$el.empty();
@@ -12,8 +10,6 @@ TasteSpottingClone.Views.CategoriesShow = Backbone.View.extend({
         that.$el.prepend(postView.render().$el);
       }
     });
-    
-    // this.$el.prepend( this.template({ model: this.model }));
     return this;
   }
 

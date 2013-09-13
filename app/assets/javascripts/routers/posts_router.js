@@ -2,17 +2,23 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
 
   currentView: null,
   categoriesCollection: null,
+  usersCollection: null,
+  favoritesCollection: null,
   
   initialize: function(options){
     this.collection = options.collection;
     this.categoriesCollection = options.categoriesCollection;
+    this.usersCollection = options.usersCollection;
+    this.favoritesCollection = options.favoritesCollection;
   },
   
   routes: {
     "": "index",
+
     "posts/new": "newPost",
     "posts/:id/edit": "editPost",
     "posts/:id/delete": "deletePost",
+        
     "category/new": "newCategory",
     "category/:id": "showCategory"
   },
@@ -20,7 +26,9 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   index: function(){
     $("#new-post-form").remove();
     var view = new TasteSpottingClone.Views.PostsIndex({
-      collection: this.collection
+      collection: this.collection,
+      usersCollection: this.usersCollection,
+      favoritesCollection: this.favoritesCollection
     });
     $("#content").html(view.render().$el);
   },
@@ -48,8 +56,6 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   deletePost: function(id){
     if (this.currentView){ this.currentView.remove(); }
     var toDelete = this.collection.get(id);
-    // TODO Always successful whether the database removes or does not remove
-    // post from database.
     toDelete.destroy({
       success: function(model, response, options){
         console.log("deleted post")

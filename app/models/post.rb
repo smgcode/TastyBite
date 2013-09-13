@@ -28,6 +28,11 @@ class Post < ActiveRecord::Base
   :through => :memberships,
   :source => :category
   
+  has_many :favorites,
+  :class_name => "Favorite",
+  :foreign_key => :post_id,
+  :primary_key => :id
+  
   has_attached_file :post_photo, :styles => {
     # use # after dimensions to scale and crop.
     # use > after dimenstions to scale

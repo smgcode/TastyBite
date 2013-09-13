@@ -19,7 +19,6 @@ TasteSpottingClone.Routers.Users = Backbone.Router.extend({
   },
 
   details: function(id){
-
     var that = this;
     $.when(this.collection.fetch())
       .done(function(userData){
@@ -32,8 +31,6 @@ TasteSpottingClone.Routers.Users = Backbone.Router.extend({
         console.log(arguments);
         console.log("failed fetching user's posts");
       });
-    
-
   }
   
 });
