@@ -18,7 +18,6 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
   
   render: function (){
     this.$el.empty();
-        
     var that = this;
     this.collection.each( function (post) {
       var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
@@ -26,7 +25,6 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
       that.renderFavoriteButtons(that, post);
     });
     this.$el.prepend(this.template());
-    
     return this;
   },
   

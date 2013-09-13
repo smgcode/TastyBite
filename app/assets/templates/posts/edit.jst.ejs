@@ -1,52 +1,45 @@
 <h3>Edit post</h3>
 <form id="edit-post-form" enctype="multipart/form-data">
   <label for="post_post_photo">Image</label>
-  <br>  
   <input
     type="file"
     name="post[post_photo]" multiple
     value="<%= model.get("post_photo") %>"
     id="post_post_photo">
 
-  <br>
   <label for="post_link">Link</label>
-  <br>
   <input
     type="text"
     name="post[link]"
     value="<%= model.get("link") %>"
     id="post_link">
 
-  <br>
   <label for="post_description">Description</label>
-  <br>
   <input
     type="text"
     name="post[description]"
     value="<%= model.get("description") %>"
     id="post_description">
 
-  <br>
-  <br>
-  <b>Select catagories:</b>
-  <br>
+  <strong>Select catagories:</strong>
+
 
   <!-- Ensure we can uncheck all boxes.  -->
   <input type="hidden" name="post[category_ids][]" value="">
   
   <% categoriesCollection.each( function(category){ %>
     <% html_id = "category_member_id" + category.get("id") %>
-    <input type="checkbox"
-      name="post[category_ids][]"
-      <% if(model.get("categories").findWhere({ id: category.get("id") })){ %>
-        <%= "checked" %>
-      <% } %>
-      value="<%= category.get("id") %>"
-      id="<%= html_id %>">
+    
     <label for="<%= html_id %>">
-      <%= category.get("name") %>
+      <input type="checkbox"
+        name="post[category_ids][]"
+        <% if(model.get("categories").findWhere({ id: category.get("id") })){ %>
+          <%= "checked" %>
+        <% } %>
+        value="<%= category.get("id") %>"
+        id="<%= html_id %>">
+      <span><%= category.get("name") %></span>
     </label>
-    <br>
   <% }); %>
 
   <br>

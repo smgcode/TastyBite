@@ -9,6 +9,7 @@ TasteSpottingClone.Views.PostsDetails = Backbone.View.extend({
       model: this.model
     }));
     this.$el.attr("data-id", this.model.get("id"));
+    this.$el.addClass("five columns");
     return this;
   }
 });

@@ -58,6 +58,8 @@ module TasteSpottingClone
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # http://stackoverflow.com/questions/10879587/bundle-exec-rake-assetsprecompile-database-configuration-does-not-specify-ada
     config.assets.initialize_on_precompile = false
   end
 end
