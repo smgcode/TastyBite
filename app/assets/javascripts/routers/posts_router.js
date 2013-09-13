@@ -82,6 +82,8 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
       .done(function(userData){
         var view = new TasteSpottingClone.Views.UsersDetails({
           model: that.usersCollection.get(id),
+          collection: that.collection,
+          usersCollection: that.usersCollection,
           favoritesCollection: that.favoritesCollection
         });
         $("#content").html(view.render().$el);

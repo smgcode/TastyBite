@@ -7,6 +7,12 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
 
   template: JST['users/details'],
 
+  usersCollection: null,
+  
+  initialize: function(options){
+    this.usersCollection = options.usersCollection;
+  },
+
   render: function (){
     this.$el.empty();
     var that = this;
@@ -17,12 +23,21 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
     });
     this.$el.prepend( this.template({ model: this.model }));
     
-    // this.favorites.each( function (post){
-    //   var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
-    //   that.$el.prepend(postView.render().$el);
-    //   that.renderButtons(that, post);
-    // });
-    // this.$el.prepend();
+    var current_user_id = that.model.get("current_user_id");
+    this.usersCollection
+      .get(current_user_id)
+      .get("favorites")
+      .each( function (favorite){
+
+      var postView = new TasteSpottingClone.Views.PostsDetails({
+        model: that.collection.get(favorite.get("post_id"))
+      });
+      that.$el.prepend(postView.render().$el);
+    });
+    this.$el.prepend(
+      "<h2>Posts favorited by: " + 
+      this.model.get("username") +
+      "</h2>");
     
     return this;
   },
