@@ -14,11 +14,13 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
   
   routes: {
     "": "index",
-
     "posts/new": "newPost",
     "posts/:id/edit": "editPost",
     "posts/:id/delete": "deletePost",
-        
+
+    "users": "userIndex",
+    "users/:id": "userDetails",
+
     "category/new": "newCategory",
     "category/:id": "showCategory"
   },
@@ -65,6 +67,29 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
       }
     });
     Backbone.history.navigate("#/");
+  },
+  
+  userIndex: function(){
+    var view = new TasteSpottingClone.Views.UsersIndex({
+      collection: this.usersCollection
+    });
+    $("#content").html(view.render().$el);
+  },
+
+  userDetails: function(id){
+    var that = this;
+    $.when(this.usersCollection.fetch())
+      .done(function(userData){
+        var view = new TasteSpottingClone.Views.UsersDetails({
+          model: that.usersCollection.get(id),
+          favoritesCollection: that.favoritesCollection
+        });
+        $("#content").html(view.render().$el);
+      })
+      .fail(function(){
+        console.log(arguments);
+        console.log("failed fetching user's posts");
+      });
   },
   
   newCategory: function(){

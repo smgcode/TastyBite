@@ -9,33 +9,42 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
 
   render: function (){
     this.$el.empty();
-    
     var that = this;
     this.model.get("posts").each( function (post){
       var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
       that.$el.prepend(postView.render().$el);
-      
-      if (that.model.get("id") === that.model.get("current_user_id")){
-        $post = that.$el
-          .find(".tile")
-          .filter("[data-id='" + post.get("id") + "']");
-        $post
-          .append($("<br>"));
-        $post
-          .append($("<button>")
-          .html("Edit")
-          .attr("data-id", post.get("id"))
-          .addClass("edit"));
-        $post
-          .append($("<button>")
-          .html("Delete")
-          .attr("data-id", post.get("id"))
-          .addClass("delete"));
-      }  
+      that.renderButtons(that, post);
     });
-    
     this.$el.prepend( this.template({ model: this.model }));
+    
+    // this.favorites.each( function (post){
+    //   var postView = new TasteSpottingClone.Views.PostsDetails({ model: post });
+    //   that.$el.prepend(postView.render().$el);
+    //   that.renderButtons(that, post);
+    // });
+    // this.$el.prepend();
+    
     return this;
+  },
+  
+  renderButtons: function(that, post){
+    if (that.model.get("id") === that.model.get("current_user_id")){
+      $post = that.$el
+        .find(".tile")
+        .filter("[data-id='" + post.get("id") + "']");
+      $post
+        .append($("<br>"));
+      $post
+        .append($("<button>")
+        .html("Edit")
+        .attr("data-id", post.get("id"))
+        .addClass("edit"));
+      $post
+        .append($("<button>")
+        .html("Delete")
+        .attr("data-id", post.get("id"))
+        .addClass("delete"));
+    }
   },
   
   editButton: function(event){

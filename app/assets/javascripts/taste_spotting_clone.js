@@ -22,9 +22,6 @@ window.TasteSpottingClone = {
         usersCollection: users,
         favoritesCollection: favorites
       });
-      new TasteSpottingClone.Routers.Users({
-        collection: users
-      });
       Backbone.history.start();})
     .fail(function(){
       console.log(arguments);
