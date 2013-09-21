@@ -23,7 +23,6 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   },
   
   encodeFile: function(event){
-    // http://stackoverflow.com/questions/4100927/chrome-filereader
     var reader = new FileReader();
     var that = this;
     reader.onload = function(){ 
@@ -32,16 +31,17 @@ TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
     reader.readAsDataURL(event.currentTarget.files[0]);
   },
   
-  // TODO When waiting for success. Change button to say submitting and
-  // disable new submitting until success or error. This will prevent
-  // the user from submitting every time they hit the button while waiting.
-  // other solution: validate on db.
   submitNewPost: function(event){
     event.preventDefault();
+    
     var attributes = $("#new-post-form").serializeJSON().post;
     this.model.set(attributes);
     this.collection.add(this.model);
-    
+    if (this.model.post_photo != "") {
+      $("#submit_post")
+        .html("<i class='icon-spinner icon-spin icon-large'></i>");
+    }
+    $("#submit_button").attr("type", "hidden")
     var that = this;
     this.model.save(null, {
       success: function(){

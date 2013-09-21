@@ -38,7 +38,11 @@ TasteSpottingClone.Views.PostsEdit = Backbone.View.extend({
     event.preventDefault();
     var attributes = $("#edit-post-form").serializeJSON().post;
     this.model.set(attributes);
-    
+    if (this.model.post_photo != "") {
+      $("#submit_post")
+        .html("<i class='icon-spinner icon-spin icon-large'></i>");
+    }
+    $("#submit_button").attr("type", "hidden")
     var that = this;
     this.model.save({}, {
       success: function(model, response, options){

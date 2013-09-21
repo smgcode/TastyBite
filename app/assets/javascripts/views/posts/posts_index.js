@@ -63,7 +63,7 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
       .filter("[data-id='" + favoriteId + "']")
       .toggleClass("favorite")
       .toggleClass("unfavorite")
-      .html("<i class='icon-heart'></i>") 
+      .html("<i class='icon-heart'></i>")
     
     var favoritePost = new TasteSpottingClone.Models.Favorite()
     var attributes = {
