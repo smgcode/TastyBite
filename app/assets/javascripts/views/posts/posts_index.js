@@ -43,14 +43,14 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
         .findWhere({ post_id: post.id }) ){
         $post
           .append($("<button>")
-          .html("Unfavorite")
+          .html("<i class='icon-heart'></i>")
           .attr("data-id", post.get("id"))
           .addClass("unfavorite"));
       }
       else{
         $post
           .append($("<button>")
-          .html("Favorite")
+          .html("<i class='icon-heart-empty'></i> ")
           .attr("data-id", post.get("id"))
           .addClass("favorite"));
       }
@@ -58,12 +58,12 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
   },
   
   favoriteButton: function(event){
-    var favoriteId = $(event.target).attr("data-id")
+    var favoriteId = $(event.currentTarget).attr("data-id")
     $(".favorite")
       .filter("[data-id='" + favoriteId + "']")
       .toggleClass("favorite")
       .toggleClass("unfavorite")
-      .html("Unfavorite")
+      .html("<i class='icon-heart'></i>") 
     
     var favoritePost = new TasteSpottingClone.Models.Favorite()
     var attributes = {
@@ -83,13 +83,13 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
   },
   
   unfavoriteButton: function(event){
-    var unfavoriteId = $(event.target).attr("data-id")
+    var unfavoriteId = $(event.currentTarget).attr("data-id")
     $(".unfavorite")
       .filter("[data-id='" + unfavoriteId + "']")
       .toggleClass("favorite")
       .toggleClass("unfavorite")
-      .html("Favorite")
-
+      .html("<i class='icon-heart-empty'></i> ")
+          
     var toUnfavorite = this.favoritesCollection.findWhere({
       post_id: parseInt(unfavoriteId),
       user_id: this.usersCollection.first().get("current_user_id")

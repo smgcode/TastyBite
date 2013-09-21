@@ -1,7 +1,5 @@
 TasteSpottingClone.Views.PostsNew = Backbone.View.extend({
   
-  className: "tile",
-  
   events: {
     "submit #new-post-form": "submitNewPost",
     "change input[type=file]": "encodeFile"

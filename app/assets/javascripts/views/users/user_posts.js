@@ -35,28 +35,28 @@ TasteSpottingClone.Views.UsersDetails = Backbone.View.extend({
         .append($("<br>"));
       $post
         .append($("<button>")
-        .html("Edit")
+        .html("<i class='icon-edit'></i>")
         .attr("data-id", post.get("id"))
         .addClass("edit"));
       $post
         .append($("<button>")
-        .html("Delete")
+        .html("<i class='icon-trash'></i>")
         .attr("data-id", post.get("id"))
         .addClass("delete"));
     }
   },
   
   editButton: function(event){
-    console.log("clicked edit button!" + $(event.target).attr("data-id"));
+    console.log("clicked edit button!" + $(event.currentTarget).attr("data-id"));
     Backbone.history.navigate("#/posts/" + 
-      $(event.target).attr("data-id") + 
+      $(event.currentTarget).attr("data-id") + 
       "/edit");
   },
 
   deleteButton: function(event){
-    console.log("clicked delete button!" + $(event.target).attr("data-id"));
+    console.log("clicked delete button!" + $(event.currentTarget).attr("data-id"));
     Backbone.history.navigate("#/posts/" + 
-      $(event.target).attr("data-id") + 
+      $(event.currentTarget).attr("data-id") + 
       "/delete");
   }
   
