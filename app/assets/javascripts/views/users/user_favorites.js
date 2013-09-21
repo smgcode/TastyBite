@@ -10,7 +10,7 @@ TasteSpottingClone.Views.UsersFavorites = Backbone.View.extend({
   
   render: function(){
     var that = this;
-    var current_user_id = that.model.get("current_user_id");
+    var current_user_id = that.model.get("id");
     this.usersCollection
       .get(current_user_id)
       .get("favorites")

@@ -29,32 +29,39 @@ TasteSpottingClone.Views.PostsIndex = Backbone.View.extend({
   },
   
   renderFavoriteButtons: function(that, post){
-    var current_user_id = that.usersCollection.first().get("current_user_id");
-    if (current_user_id){
-      $post = that.$el
-        .find(".tile")
-        .filter("[data-id='" + post.get("id") + "']");
-      $post
-        .append($("<br>"));
-      if (that
-        .usersCollection
-        .get(current_user_id)
-        .get("favorites")
-        .findWhere({ post_id: post.id }) ){
-        $post
-          .append($("<button>")
-          .html("<i class='icon-heart'></i>")
-          .attr("data-id", post.get("id"))
-          .addClass("unfavorite"));
-      }
-      else{
-        $post
-          .append($("<button>")
-          .html("<i class='icon-heart-empty'></i> ")
-          .attr("data-id", post.get("id"))
-          .addClass("favorite"));
-      }
-    }
+    $.when(this.usersCollection.fetch())
+      .done(function(userData){
+        var current_user_id = that.usersCollection.first().get("current_user_id");
+        if (current_user_id){
+          $post = that.$el
+            .find(".tile")
+            .filter("[data-id='" + post.get("id") + "']");
+          $post
+            .append($("<br>"));
+          if (that
+            .usersCollection
+            .get(current_user_id)
+            .get("favorites")
+            .findWhere({ post_id: post.id }) ){
+            $post
+              .append($("<button>")
+              .html("<i class='icon-heart'></i>")
+              .attr("data-id", post.get("id"))
+              .addClass("unfavorite"));
+          }
+          else{
+            $post
+              .append($("<button>")
+              .html("<i class='icon-heart-empty'></i> ")
+              .attr("data-id", post.get("id"))
+              .addClass("favorite"));
+          }
+        }
+      })
+      .fail(function(){
+        console.log(arguments);
+        console.log("failed fetching users collection");
+      });
   },
   
   favoriteButton: function(event){
