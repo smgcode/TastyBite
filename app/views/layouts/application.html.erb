@@ -58,7 +58,8 @@
         <% Category.all.each do |category| %></li>
           <strong>
           <li>
-            <%= link_to("#{category.name}","#category/#{category.id}" )%>
+            <%= link_to("#{category.name}",
+                        root_url + "#category/#{category.id}" )%>
           </li>
           </strong>
         <% end %>
