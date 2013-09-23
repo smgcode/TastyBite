@@ -84,14 +84,12 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
           model: that.usersCollection.get(id),
           collection: that.collection,
           usersCollection: that.usersCollection,
-          // favoritesCollection: that.favoritesCollection
         });
         $("#content").html(view.render().$el);
         var view = new TasteSpottingClone.Views.UsersFavorites({
           model: that.usersCollection.get(id),
           collection: that.collection,
           usersCollection: that.usersCollection,
-          // favoritesCollection: that.favoritesCollection
         });
         $("#content").append(view.render().$el);
       })
@@ -115,7 +113,9 @@ TasteSpottingClone.Routers.Posts = Backbone.Router.extend({
       if (this.currentView){ this.currentView.remove(); }
       this.currentView = new TasteSpottingClone.Views.CategoriesShow({
         model: this.categoriesCollection.get(id),
-        collection: this.collection
+        collection: this.collection,
+        usersCollection: this.usersCollection,
+        favoritesCollection: this.favoritesCollection
       });
       $("#content").html(this.currentView.render().$el);
     }
