@@ -7,11 +7,5 @@ TasteSpottingClone.Models.User = Backbone.Model.extend({
     data.favorites = favorites;
     return data
   },
-  
-  toJSON: function(){
-    var json = Backbone.Model.prototype.toJSON.call(this);
-    json.posts = this.posts.toJSON();
-    return json
-  }
 
 });
