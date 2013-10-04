@@ -1,5 +1,4 @@
-#Tasty Bite
-==========
+Tasty Bite
 
 #### Food blog agrigator to share and discover new food
 
@@ -8,7 +7,6 @@ Tasty Bite is a clone of tastespotting.com using Ruby on Rails with the majority
 
 #### Try it out!
 Login as a guest:
-
-[http://www.tastybite.org/](http://www.tastybite.org/)
+[http://www.tastybite.org/](http://www.tastybite.org/)<br>
 <strong>Username:</strong> guest <br>
 <strong>Password:</strong> guestpass
