@@ -1,4 +1,4 @@
-Tasty Bite
+#Tasty Bite
 
 #### Food blog agrigator to share and discover new food
 
